@@ -1,3 +1,5 @@
+from queue import Queue
+
 class BinaryTreeNode:
   def __init__(self, data):
     self.data = data
@@ -13,6 +15,19 @@ def insert(root,newValue):
     else:
         root.rightChild=insert(root.rightChild,newValue)
     return root
+
+def bfs(root):
+    if root==None:
+        return
+    Q=Queue()
+    Q.put(root)
+    while(not Q.empty()):
+        node=Q.get()
+        if node==None:
+            continue
+        print(node.data)
+        Q.put(node.leftChild)
+        Q.put(node.rightChild)
     
 def postorder(root):
     
@@ -34,5 +49,7 @@ while(no_of_nodes!=0):
     insert(root,node_value)
     no_of_nodes=no_of_nodes-1
 
-print("Printing values of binary tree in postorder Traversal.")
-postorder(root)
+print("BFS TRAVEL")
+bfs(root)
+# print("Printing values of binary tree in postorder Traversal.")
+# postorder(root)
